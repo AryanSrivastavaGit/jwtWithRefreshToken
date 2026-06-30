@@ -1,7 +1,7 @@
 package com.aryan.jwtWithRefreshToken.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +20,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
     private String name;
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
     private BigDecimal price;
 }

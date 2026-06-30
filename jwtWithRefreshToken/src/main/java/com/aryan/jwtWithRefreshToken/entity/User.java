@@ -1,18 +1,14 @@
 package com.aryan.jwtWithRefreshToken.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "applicationUser")
 public class User {
 
@@ -20,18 +16,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Full name cannot be empty")
-    @Size(min = 3, max = 30, message = "Full Name length should be 3-30 characters")
     @Column(nullable = false)
     private String fullName;
 
-    @NotBlank(message = "Username cannot be empty")
-    @Size(min = 3, max = 30, message = "Full Name length should be 3-30 characters")
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @NotBlank(message = "Password cannot be empty")
-    @Size(min = 3, max = 30, message = "Full Name length should be 3-30 characters")
     @Column(nullable = false)
     private String password;
 

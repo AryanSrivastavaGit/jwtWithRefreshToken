@@ -18,26 +18,28 @@ public class ProductController {
 
     @GetMapping("getAll")
     public ResponseEntity<?> getAll(){
-        return new ResponseEntity<>(productService.getAll(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<?> byId(@PathVariable Long id){
-        return new ResponseEntity<>(productService.byId(id), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(productService.byId(id), HttpStatus.OK);
     }
 
     @PostMapping("add")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> add(@Valid @RequestBody Product product){
-        return new ResponseEntity<>(productService.add(product), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(productService.add(product), HttpStatus.OK);
     }
 
     @PutMapping("update/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updateById(@PathVariable Long id, @Valid @RequestBody Product product){
-        return new ResponseEntity<>(productService.updateById(id, product), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(productService.updateById(id, product), HttpStatus.OK);
     }
 
     @DeleteMapping("delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         productService.deleteById(id);
         return new ResponseEntity<>("Product Deleted Successfully", HttpStatus.OK);
